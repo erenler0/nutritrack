@@ -1,0 +1,334 @@
+/* auth.css — Login & Register sayfaları */
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap');
+
+:root {
+  --bg:       #0d0f0e;
+  --bg-card:  #141716;
+  --border:   #252825;
+  --border-hi:#2e332d;
+  --t1:       #e8ede9;
+  --t2:       #8a9489;
+  --t3:       #52584f;
+  --acc:      #b6f542;
+  --acc-dim:  #1e2e0a;
+  --danger:   #f87171;
+  --r-md:     10px;
+  --r-lg:     16px;
+  font-family: 'DM Sans', sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ── Sayfa düzeni ─────────────────────────────────────────── */
+.auth-page {
+  min-height: 100vh;
+  background: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+
+/* Arka plan deseni */
+.auth-page::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size: 48px 48px;
+  opacity: .35;
+  pointer-events: none;
+}
+
+/* ── Kart ─────────────────────────────────────────────────── */
+.auth-card {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* ── Header ───────────────────────────────────────────────── */
+.auth-header {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.auth-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.logo-mark {
+  font-size: 20px;
+  color: var(--acc);
+}
+
+.logo-text {
+  font-family: 'DM Mono', monospace;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--t1);
+  letter-spacing: .02em;
+}
+
+.auth-title {
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--t1);
+  letter-spacing: -.02em;
+}
+
+.auth-sub {
+  font-size: 13px;
+  color: var(--t3);
+}
+
+/* ── Form ─────────────────────────────────────────────────── */
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.auth-field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.auth-label {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  color: var(--t3);
+}
+
+.label-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.forgot-link {
+  font-size: 11px;
+  color: var(--t3);
+  text-decoration: none;
+  transition: color .15s;
+}
+.forgot-link:hover { color: var(--acc); }
+
+.auth-input {
+  width: 100%;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  color: var(--t1);
+  font-size: 14px;
+  padding: 10px 12px;
+  outline: none;
+  font-family: 'DM Sans', sans-serif;
+  transition: border-color .15s;
+}
+.auth-input:focus { border-color: var(--border-hi); }
+.auth-input::placeholder { color: var(--t3); }
+.auth-input.input-error { border-color: var(--danger); }
+
+/* Şifre göster/gizle */
+.pass-wrap {
+  position: relative;
+}
+.pass-wrap .auth-input {
+  padding-right: 72px;
+}
+.pass-toggle {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  font-size: 11px;
+  color: var(--t3);
+  cursor: pointer;
+  transition: color .15s;
+  font-family: 'DM Sans', sans-serif;
+}
+.pass-toggle:hover { color: var(--t1); }
+
+/* Şifre gücü */
+.strength-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 4px;
+}
+.strength-bar {
+  display: flex;
+  gap: 4px;
+  flex: 1;
+}
+.strength-seg {
+  flex: 1;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--border);
+  transition: background .3s;
+}
+.strength-label {
+  font-size: 11px;
+  font-weight: 500;
+  min-width: 32px;
+  text-align: right;
+}
+
+/* Şifre kuralları */
+.pass-rules {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  margin-top: 4px;
+}
+.pass-rule {
+  font-size: 11px;
+  color: var(--t3);
+  transition: color .2s;
+}
+.pass-rule.ok { color: #4ade8a; }
+
+.field-error {
+  font-size: 11px;
+  color: var(--danger);
+}
+
+/* Hata kutusu */
+.auth-error {
+  background: #2a1010;
+  border: 1px solid #5a2020;
+  border-radius: var(--r-md);
+  color: var(--danger);
+  font-size: 13px;
+  padding: 10px 12px;
+  line-height: 1.5;
+}
+
+/* Giriş butonu */
+.auth-btn {
+  width: 100%;
+  padding: 12px;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: 'DM Sans', sans-serif;
+  background: var(--acc-dim);
+  border: 1px solid var(--acc);
+  border-radius: var(--r-md);
+  color: var(--acc);
+  cursor: pointer;
+  transition: all .2s;
+  letter-spacing: .01em;
+  margin-top: 4px;
+}
+.auth-btn:hover { background: var(--acc); color: var(--bg); }
+.auth-btn:disabled { opacity: .6; cursor: default; }
+
+/* Küçük notlar */
+.terms-note {
+  font-size: 11px;
+  color: var(--t3);
+  text-align: center;
+  line-height: 1.6;
+}
+
+/* Footer link */
+.auth-footer {
+  font-size: 13px;
+  color: var(--t3);
+  text-align: center;
+  padding-top: .5rem;
+  border-top: 1px solid var(--border);
+}
+
+.auth-link {
+  color: var(--acc);
+  text-decoration: none;
+  font-weight: 500;
+}
+.auth-link:hover { text-decoration: underline; }
+
+/* ── Navbar (mevcut sayfalara eklenecek) ──────────────────── */
+.app-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1.5rem;
+  height: 52px;
+  background: var(--bg-card);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+}
+.nav-logo .logo-mark { font-size: 16px; color: var(--acc); }
+.nav-logo .logo-text {
+  font-family: 'DM Mono', monospace;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--t1);
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.nav-link {
+  padding: 6px 12px;
+  font-size: 13px;
+  color: var(--t3);
+  text-decoration: none;
+  border-radius: var(--r-md);
+  transition: all .15s;
+}
+.nav-link:hover { color: var(--t1); background: var(--border); }
+.nav-link.active { color: var(--acc); background: var(--acc-dim); }
+
+.nav-user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--t2);
+}
+
+.signout-btn {
+  padding: 5px 12px;
+  font-size: 12px;
+  font-family: 'DM Sans', sans-serif;
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  color: var(--t3);
+  cursor: pointer;
+  transition: all .15s;
+}
+.signout-btn:hover { border-color: var(--danger); color: var(--danger); }

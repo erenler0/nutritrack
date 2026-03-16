@@ -1,0 +1,25 @@
+{
+  "framework": "nextjs",
+  "buildCommand": "npm run build",
+  "devCommand":   "npm run dev",
+  "installCommand": "npm install",
+  "regions": ["fra1"],
+  "env": {
+    "NEXT_PUBLIC_SUPABASE_URL":      "@supabase_url",
+    "NEXT_PUBLIC_SUPABASE_ANON_KEY": "@supabase_anon_key"
+  },
+  "headers": [
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, s-maxage=300, stale-while-revalidate=60" }
+      ]
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/api/foods/:path*",
+      "destination": "/api/foods/:path*"
+    }
+  ]
+}

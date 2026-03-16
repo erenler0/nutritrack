@@ -1,0 +1,466 @@
+/* profile.css + log.css — aynı tema: Nutrition Lab Dark */
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap');
+
+:root {
+  --bg:        #0d0f0e;
+  --bg-card:   #141716;
+  --bg-hover:  #1c1f1d;
+  --border:    #252825;
+  --border-hi: #2e332d;
+  --t1:        #e8ede9;
+  --t2:        #8a9489;
+  --t3:        #52584f;
+  --acc:       #b6f542;
+  --acc-dim:   #1e2e0a;
+  --pro:       #4ade8a;
+  --carb:      #60a5fa;
+  --fat:       #fb923c;
+  --danger:    #f87171;
+  --r-sm:      6px;
+  --r-md:      10px;
+  --r-lg:      16px;
+  font-family: 'DM Sans', sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ── Ortak ───────────────────────────────────────────────── */
+.section-title {
+  font-family: 'DM Mono', monospace;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--t3);
+  margin-bottom: 1rem;
+}
+
+.field-label {
+  display: block;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  color: var(--t3);
+  margin-bottom: 5px;
+}
+
+.field-input {
+  width: 100%;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  color: var(--t1);
+  font-size: 14px;
+  padding: 9px 12px;
+  outline: none;
+  font-family: 'DM Sans', sans-serif;
+  transition: border-color .15s;
+}
+.field-input:focus { border-color: var(--border-hi); }
+
+.seg-group {
+  display: flex;
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  overflow: hidden;
+}
+.seg-btn {
+  flex: 1;
+  padding: 8px 0;
+  font-size: 13px;
+  border: none;
+  background: none;
+  color: var(--t3);
+  cursor: pointer;
+  border-right: 1px solid var(--border);
+  transition: all .15s;
+  font-family: 'DM Sans', sans-serif;
+}
+.seg-btn:last-child { border-right: none; }
+.seg-btn.active { background: var(--acc-dim); color: var(--acc); font-weight: 500; }
+
+/* ── Profile Page ─────────────────────────────────────────── */
+.profile-page {
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--t1);
+  padding: 2rem 1rem;
+}
+
+.profile-inner {
+  max-width: 680px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.profile-section {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 1.5rem;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.form-field { display: flex; flex-direction: column; }
+
+.activity-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 6px;
+}
+
+.activity-card {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--r-sm);
+  padding: 8px 6px;
+  cursor: pointer;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  transition: all .15s;
+}
+.activity-card:hover { border-color: var(--border-hi); }
+.activity-card.active { border-color: var(--acc); background: var(--acc-dim); }
+.act-label {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--t1);
+}
+.act-sub {
+  font-size: 9px;
+  color: var(--t3);
+  line-height: 1.3;
+}
+.activity-card.active .act-label { color: var(--acc); }
+
+/* TDEE banner */
+.tdee-banner {
+  background: var(--acc-dim);
+  border: 1px solid var(--acc);
+  border-radius: var(--r-lg);
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+.tdee-main { display: flex; align-items: baseline; gap: 6px; flex-shrink: 0; }
+.tdee-val {
+  font-family: 'DM Mono', monospace;
+  font-size: 36px;
+  font-weight: 500;
+  color: var(--acc);
+}
+.tdee-unit { font-size: 13px; color: var(--t2); }
+.tdee-desc { font-size: 12px; color: var(--t2); line-height: 1.6; }
+
+/* Makro preset */
+.preset-row {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+.preset-btn {
+  padding: 5px 12px;
+  font-size: 12px;
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  color: var(--t2);
+  cursor: pointer;
+  transition: all .15s;
+}
+.preset-btn.active { background: var(--acc-dim); border-color: var(--acc); color: var(--acc); }
+
+.kcal-field { width: 140px; font-size: 20px; font-weight: 500; color: var(--acc); }
+
+.macro-inputs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-bottom: 1rem;
+}
+.macro-input-card { display: flex; flex-direction: column; gap: 4px; }
+.macro-kcal-hint { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--t3); }
+
+.macro-preview-bar {
+  height: 5px;
+  border-radius: 3px;
+  background: var(--bg);
+  display: flex;
+  overflow: hidden;
+  gap: 1px;
+}
+.mpb-seg { height: 100%; transition: width .35s ease; }
+.mpb-p { background: var(--pro); }
+.mpb-c { background: var(--carb); }
+.mpb-f { background: var(--fat); }
+
+/* Kaydet */
+.save-btn {
+  padding: 14px;
+  font-size: 15px;
+  font-weight: 500;
+  font-family: 'DM Sans', sans-serif;
+  background: var(--acc-dim);
+  border: 1px solid var(--acc);
+  border-radius: var(--r-md);
+  color: var(--acc);
+  cursor: pointer;
+  transition: all .2s;
+  letter-spacing: .01em;
+}
+.save-btn:hover { background: var(--acc); color: var(--bg); }
+.save-btn.saved { background: var(--pro); border-color: var(--pro); color: #0d0f0e; }
+.save-btn:disabled { opacity: .6; cursor: default; }
+
+/* ── Log Page ─────────────────────────────────────────────── */
+.log-page {
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--t1);
+  padding: 2rem 1rem;
+}
+
+.log-inner {
+  max-width: 720px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Tarih navigasyonu */
+.date-nav {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.date-btn {
+  width: 36px;
+  height: 36px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--r-sm);
+  color: var(--t2);
+  cursor: pointer;
+  font-size: 16px;
+  flex-shrink: 0;
+  transition: all .15s;
+}
+.date-btn:hover { border-color: var(--border-hi); color: var(--t1); }
+.date-btn:disabled { opacity: .3; cursor: default; }
+.date-center { flex: 1; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 4px; }
+.date-label { font-size: 15px; font-weight: 500; color: var(--t1); text-transform: capitalize; }
+.today-btn {
+  font-size: 11px;
+  color: var(--acc);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  text-decoration: underline;
+}
+
+/* Özet kartlar */
+.summary-cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+.sum-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  padding: .875rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.sum-val {
+  font-family: 'DM Mono', monospace;
+  font-size: 20px;
+  font-weight: 500;
+}
+.sum-lbl { font-size: 11px; color: var(--t3); }
+
+/* Kalori bar */
+.calorie-track { display: flex; flex-direction: column; gap: 6px; }
+.calorie-bar-outer {
+  height: 6px;
+  background: var(--border);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.calorie-bar-inner {
+  height: 100%;
+  border-radius: 3px;
+  transition: width .5s ease, background .3s;
+}
+.calorie-track-labels { display: flex; justify-content: space-between; font-size: 11px; color: var(--t3); }
+
+/* 7 gün grafik */
+.history-chart {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 1.25rem;
+}
+.chart-title {
+  display: block;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  color: var(--t3);
+  margin-bottom: 1rem;
+}
+.bar-chart {
+  display: flex;
+  gap: 8px;
+  align-items: flex-end;
+  height: 100px;
+}
+.hbar-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+.hbar-val { font-family: 'DM Mono', monospace; font-size: 9px; color: var(--t3); min-height: 12px; }
+.hbar-track {
+  width: 100%;
+  height: 72px;
+  background: var(--bg);
+  border-radius: var(--r-sm);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+}
+.hbar-fill {
+  width: 100%;
+  border-radius: var(--r-sm);
+  transition: height .4s ease;
+  min-height: 2px;
+}
+.hbar-goal-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--t3);
+  opacity: .5;
+}
+.hbar-col.selected .hbar-track { border: 1px solid var(--border-hi); }
+.hbar-date { font-size: 10px; color: var(--t3); text-transform: capitalize; }
+
+/* Öğün listesi */
+.log-loading, .log-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 3rem 0;
+  color: var(--t3);
+}
+.empty-ico { font-size: 28px; }
+.log-empty p { font-size: 15px; font-weight: 500; color: var(--t2); }
+.log-empty span { font-size: 12px; }
+
+.meal-list { display: flex; flex-direction: column; gap: 12px; }
+
+.meal-group {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+}
+.meal-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: .875rem 1rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-hover);
+}
+.meal-icon { font-size: 12px; color: var(--acc); }
+.meal-name { font-size: 13px; font-weight: 500; color: var(--t1); flex: 1; }
+.meal-kcal { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--t2); }
+
+.meal-items { padding: .25rem 0; }
+
+.log-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: .625rem 1rem;
+  border-bottom: 1px solid var(--border);
+  transition: background .1s;
+}
+.log-item:last-child { border-bottom: none; }
+.log-item:hover { background: var(--bg-hover); }
+
+.log-item-main { flex: 1; min-width: 0; }
+.log-food-name { font-size: 13px; color: var(--t1); display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.log-food-brand { font-size: 11px; color: var(--t3); display: block; }
+
+.log-item-macros {
+  display: flex;
+  gap: 6px;
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+.log-gram { color: var(--t2); }
+.log-kcal { color: var(--acc); font-weight: 500; }
+.log-p { color: var(--pro); }
+.log-c { color: var(--carb); }
+.log-f { color: var(--fat); }
+
+.remove-btn {
+  width: 24px;
+  height: 24px;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  background: none;
+  color: var(--t3);
+  cursor: pointer;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all .15s;
+}
+.remove-btn:hover { border-color: var(--danger); color: var(--danger); }
+.remove-btn:disabled { opacity: .4; cursor: default; }
+
+/* ── Responsive ───────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .activity-grid { grid-template-columns: repeat(3, 1fr); }
+  .form-grid { grid-template-columns: 1fr; }
+  .summary-cards { grid-template-columns: repeat(2, 1fr); }
+  .macro-inputs { grid-template-columns: 1fr; }
+  .tdee-banner { flex-direction: column; gap: .75rem; }
+}
